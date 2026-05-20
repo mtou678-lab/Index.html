@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINU Syndicate - الإمبراطورية الشاملة للاغتيال والنجاة</title>
+    <style>
+        body {
+            background-color: #0c0d10;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 25px 0;
+            border-bottom: 2px solid #ff3e3e;
+            margin-bottom: 25px;
+        }
+        h1 {
+            color: #ff3e3e;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 26px;
+        }
+        
+        .tactical-polygon-logo {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            background-image: url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=300&q=80');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ff3e3e;
+            box-shadow: 0 0 25px rgba(255, 62, 62, 0.7);
+            transition: transform 0.3s ease;
+        }
+        .tactical-polygon-logo:hover { transform: scale(1.05) rotate(5deg); }
+
+        .btn-connect {
+            background-color: #ff3e3e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(255, 62, 62, 0.4);
+            margin-top: 15px;
+        }
+        .btn-connect:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 22px rgba(255, 62, 62, 0.7);
+        }
+
+        /* المؤشرات الحيوية الرقمية */
+        .vitals-bar-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .vital-box {
+            background: #15181f;
+            border: 1px solid #2a2e3d;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+        .vital-label {
+            font-size: 12px;
+            color: #8a92a6;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        .vital-bar-bg {
+            background: #262a36;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .vital-bar-fill { height: 100%; transition: width 0.4s ease; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+        
+        .card {
+            background-color: #14171f;
+            border: 1px solid #262936;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        }
+        .card h2 {
+            color: #ff3e3e;
+            margin-top: 0;
+            border-bottom: 1px solid #262936;
+            padding-bottom: 10px;
+            font-size: 18px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; color: #b0b7c6; font-size: 13px; }
+        input, select {
+            width: 100%;
+            padding: 11px;
+            background-color: #1e222e;
+            border: 1px solid #363c52;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn-action {
+            background-color: #1e222e;
+            color: #ff3e3e;
+            border: 1px solid #ff3e3e;
+            width: 100%;
+            padding: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn-action:hover { background-color: #ff3e3e; color: white; }
+
+        .simulation-screen {
+            background: #000000;
+            border: 2px solid #363c52;
+            border-radius: 6px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .screen-img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; }
+        .screen-overlay-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 62, 62, 0.85);
+            color: white;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        .narrator-box {
+            padding: 15px;
+            background: #11141c;
+            border-top: 1px solid #262936;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #d1d8e5;
+        }
+
+        .shop-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1d212c;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ff3e3e;
+        }
+
+        /* 📡 قسم التحديث الجديد: سجل العمليات المباشر البلوشين */
+        .live-feed-box {
+            background-color: #08090d;
+            border: 1px dashed #ff3e3e;
+            border-radius: 5px;
+            padding: 10px;
+            height: 100px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #2ecc71;
+        }
+        .feed-line { margin-bottom: 5px; border-bottom: 1px solid #15181f; padding-bottom: 3px; }
+
+        /* 👑 قسم لوحة الإدارة السرية للمالك (مخفية تلقائياً بـ CSS وترد بـ JS) */
+        #adminPanel {
+            display: none; 
+            border: 2px solid #f39c12;
+            background: linear-gradient(145deg, #1a150e, #14171f);
+            margin-top: 25px;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.2);
+        }
+        #adminPanel h2 { color: #f39c12; border-bottom: 1px solid #f39c12; }
+        .btn-admin {
+            background-color: #1e222e;
+            color: #f39c12;
+            border: 1px solid #f39c12;
+        }
+        .btn-admin:hover { background-color: #f39c12; color: black; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="tactical-polygon-logo"></div>
+        <h1>SINU Mafia Syndicate</h1>
+        <p>مرحباً بك في وحدة التخطيط والعمليات الميدانية الكبرى للمنظمة</p>
+        <button class="btn-connect" id="connectBtn" onclick="connectWallet()">تأمين الاتصال وبث الهوية</button>
+    </header>
+
+    <div class="vitals-bar-container">
+        <div class="vital-box">
+            <div class="vital-label">🔋 طاقة المشغل (صحة)</div>
+            <div class="vital-bar-bg"><div class="vital-bar-fill" id="healthBar" style="width: 100%; background: #2ecc71;"></div></div>
+        </div>
+        <div class="vital-box">
+            <div class="vital-label">🛡️ درع النجاة التكتيكي</div>
+            <div class="vital-bar-bg"><div class="vital-bar-fill" id="shieldBar" style="width: 85%; background: #3498db;"></div></div>
+        </div>
+        <div class="vital-box">
+            <div class="vital-label">🚨 مستوى الرصد الفيدرالي</div>
+            <div class="vital-bar-bg"><div class="vital-bar-fill" id="wantedBar" style="width: 20%; background: #e74c3c;"></div></div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>🥊 لوحة العقود المفتوحة (PvP)</h2>
+            <div class="form-group">
+                <label>معرف عنوان محفظة العميل المستهدف (Target Address):</label>
+                <input type="text" id="targetAddress" placeholder="أدخل عنوان الهدف المستهدف للتتبع...">
+            </div>
+            <div class="form-group">
+                <label>رصد مكافأة التنفيذ المالي (من أرصدة اللعبة):</label>
+                <input type="number" id="bountyAmount" placeholder="حدد رصيد الغنيمة للقاتل المستأجر...">
+            </div>
+            <button class="btn-action" onclick="createBounty()">بث كود التصفية الفوري</button>
+        </div>
+
+        <div class="card">
+            <h2>🔫 مهمة تصفية خاطفة وسريعة (PvE)</h2>
+            <p>أرسل طلقة الموت اللحظي عبر مسار قطار الأنفاق السريع واختبر كفاءة مناوراتك القتالية لجني الغنائم.</p>
+            <p style="font-size: 13px; color: #ff3e3e; font-weight: bold;">رسوم التخطيط للمهمة: 5,000 من رصيد اللعبة</p>
+            
+            <div class="form-group">
+                <label>تحديد خطة الإخلاء والهروب التكتيكي السريع:</label>
+                <select id="escapeRoute">
+                    <option value="car">إخلاء عبر دراجة نارية رياضية متسللة</option>
+                    <option value="boat">هروب بحري عبر قارب سريع بالميناء</option>
+                    <option value="heli">إخلاء جوي حاسم عبر مروحية الأسطح</option>
+                </select>
+            </div>
+            <button class="btn-action" style="background-color: #ff3e3e; color: white;" onclick="executePve()">إطلاق العملية التكتيكية الكبرى</button>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>📺 رادار المراقبة التكتيكي والسيناريو الميداني المباشر</h2>
+            <div class="simulation-screen">
+                <div class="screen-overlay-label" id="overlayLabel">الرادار: حالة الاستعداد والترقب المفتوح</div>
+                <img class="screen-img" id="screenImg" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="Simulation state">
+                <div class="narrator-box" id="narratorText">
+                    🦅 <strong>الوضع الميداني الحالي:</strong> في انتظار إعطاء الأوامر العسكرية من المالك. شبكة الرادارات جاهزة، الأسلحة محشوة، والمنظمة في ترقب كامل لإشارة البدء.
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>🛰️ بث الأقمار الصناعية (سجل العمليات المشفرة الحي)</h2>
+            <div class="live-feed-box" id="liveFeed">
+                <div class="feed-line">[نظام الأمان]: الرادار يمسح شبكة Base الآن... متصل وثابت.</div>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>🛒 متجر التجهيزات والترسانة (Survival Shop)</h2>
+            <div class="shop-item">
+                <div>
+                    <strong>حقنة الأدرينالين لإنعاش الطاقة والمواصلة (Adrenaline)</strong>
+                    <div style="font-size: 12px; color: #aaa;">الرسوم المقتطعة: 500 من رصيد اللعبة</div>
+                </div>
+                <button class="btn-connect" style="padding: 5px 15px; font-size: 13px; margin: 0;" onclick="buyItem(1)">تجهيز فوري</button>
+            </div>
+            <div class="shop-item">
+                <div>
+                    <strong>قنبلة الدخان للهروب والتواري عن الأنظار (Smoke Bomb)</strong>
+                    <div style="font-size: 12px; color: #aaa;">الرسوم المقتطعة: 300 من رصيد اللعبة</div>
+                </div>
+                <button class="btn-connect" style="padding: 5px 15px; font-size: 13px; margin: 0;" onclick="buyItem(2)">تجهيز فوري</button>
+            </div>
+        </div>
+
+        <div class="card" id="adminPanel" style="grid-column: 1 / -1;">
+            <h2>👑 قاعة قيادة السنديكيت السرية (Owner Dashboard)</h2>
+            <p style="color: #f39c12; font-size: 13px;">تمت مطابقة هويتك العسكرية بنجاح: أهلاً بك يا قائد المنظمة الأعلى، لديك الصلاحيات الكاملة لتعديل العقد.</p>
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                    <label>سحب أرصدة اللعبة المجمعة في العقد إلى محفظتك الشخصية:</label>
+                    <button class="btn-action btn-admin" onclick="ownerWithdraw()">سحب الغنائم الفوري 💰</button>
+                </div>
+                <div>
+                    <label>تجميد مؤقت للعمليات الأمنية في حالة الطوارئ:</label>
+                    <button class="btn-action btn-admin" style="border-color: #e74c3c; color: #e74c3c;" onclick="alert('تم تفعيل بروتوكول الطوارئ')">إقفال السنديكيت 🔒</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function playSyndicateSound(type) {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if(type === 'gunshot') {
+            let bufferSize = audioCtx.sampleRate * 0.5,
+                buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate),
+                data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+            let noise = audioCtx.createBufferSource(); noise.buffer = buffer;
+            let filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+            let gain = audioCtx.createGain(); gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            noise.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination); noise.start();
+        } else if(type === 'mechanical') {
+            let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+            osc.type = 'square'; osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+        }
+    }
+
+    function addLog(text) {
+        const feed = document.getElementById("liveFeed");
+        const time = new Date().toLocaleTimeString();
+        feed.innerHTML += `<div class="feed-line">[${time}] ${text}</div>`;
+        feed.scrollTop = feed.scrollHeight;
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" type="text/javascript"></script>
+
+<script>
+    const contractAddress = "0x3E71427c4F4c3aE6DBA472Ccb17076E2148A1231"; 
+    const contractABI = [
+        
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_sinuTokenAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "OwnableInvalidOwner",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "OwnableUnauthorizedAccount",
+		"type": "error"
+	},
+	{
+		"inputs": [],
+		"name": "ReentrancyGuardReentrantCall",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "SafeERC20FailedOperation",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "challengeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "winner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "loser",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "prizeWon",
+				"type": "uint256"
+			}
+		],
+		"name": "BattleResolved",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "challengeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "target",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "BountyCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "player",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "burnedAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "randomOutcome",
+				"type": "uint256"
+			}
+		],
+		"name": "PveHitExecuted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "player",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "itemType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokensBurned",
+				"type": "uint256"
+			}
+		],
+		"name": "SurvivalUsed",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "BURN_ADDRESS",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_challengeId",
+				"type": "uint256"
+			}
+		],
+		"name": "acceptAndFight",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_burnFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_devFee",
+				"type": "uint256"
+			}
+		],
+		"name": "adjustFees",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_hitBurn",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_adrenaline",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_smoke",
+				"type": "uint256"
+			}
+		],
+		"name": "adjustPveCosts",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "adrenalineCost",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "burnFeePercent",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_itemType",
+				"type": "uint256"
+			}
+		],
+		"name": "buySurvivalItem",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "challengeCounter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "challenges",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "target",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bountyAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isAccepted",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "isResolved",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_target",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "createBountyChallenge",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "devFeePercent",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "emergencyWithdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "executePveAssassination",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pveAssassinationBurn",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "sinuToken",
+		"outputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "smokeBombCost",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+ // لقراءة محفظة المالك والتحقق منها
+    ];
+
+    let provider; let signer; let contract;
+
+    async function connectWallet() {
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                playSyndicateSound('mechanical');
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const currentWallet = accounts[0];
+                
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                signer = provider.getSigner();
+                contract = new ethers.Contract(contractAddress, contractABI, signer);
+                
+                const shortAddress = currentWallet.substring(0, 6) + "..." + currentWallet.substring(currentWallet.length - 4);
+                document.getElementById("connectBtn").innerText = `المشغل متصل: ${shortAddress}`;
+                document.getElementById("connectBtn").style.backgroundColor = "#27ae60"; 
+                document.getElementById("narratorText").innerHTML = `🟢 <strong>تمت مطابقة التوقيع الفيدرالي:</strong> الهوية الرقمية للمشغل آمنة الآن ومتصلة مباشرة بنظام السنديكيت.`;
+                
+                addLog(`تم ربط الهوية بنجاح للمشغل: ${shortAddress}`);
+
+                // 🔥 التحقق التكتيكي: هل المتصل هو المالك الأصلي للعبة؟
+                try {
+                    const contractOwner = await contract.owner();
+                    if(currentWallet.toLowerCase() === contractOwner.toLowerCase()) {
+                        document.getElementById("adminPanel").style.display = "block"; // إظهار لوحة التحكم السرية لك فوراً
+                        addLog("👑 تحذير سيادي: تم تفعيل قاعة قيادة المالك الأعلى للسنديكيت!");
+                    }
+                } catch(e) { console.log("المشغل الحالي لاعب عادي."); }
+
+            } catch (error) {
+                alert("رفض المشغل تأمين ربط الهوية الرقمية.");
+            }
+        } else {
+            alert("يرجى تشغيل شاشة العمليات من داخل متصفح محفظة آمنة.");
+        }
+    }
+
+    async function createBounty() {
+        if (!contract) { alert("يرجى ربط الهوية القتالية أولاً لبث الأوامر!"); return; }
+        let target = document.getElementById("targetAddress").value;
+        let amount = document.getElementById("bountyAmount").value;
+        if (!target || !amount) { alert("أدخل إحداثيات الهدف ورصيد الجائزة أولاً!"); return; }
+        
+        try {
+            playSyndicateSound('mechanical');
+            const amountInWei = ethers.utils.parseUnits(amount, 18);
+            addLog(`جاري طلب توقيع عقد PvP لاستهداف: ${target.substring(0,6)}...`);
+            
+            const tx = await contract.createBountyChallenge(target, amountInWei);
+            document.getElementById("narratorText").innerHTML = "⏳ <strong>جاري إرسال عقد التصفية:</strong> يتم الآن معالجة المعاملة على بلوكشين Base...";
+            await tx.wait();
+            
+            playSyndicateSound('gunshot');
+            addLog(`🎯 تم البث والتوثيق بنجاح! رصد جائزة بقيمة ${amount}`);
+            document.getElementById("narratorText").innerHTML = `🎯 <strong>تم إصدار العقد بنجاح:</strong> تم رصد الجائزة ونشر الإحداثيات رسمياً!`;
+        } catch (error) {
+            addLog("❌ ألغيت العملية من قبل المشغل أو الرصيد غير كافٍ.");
+        }
+    }
+
+    async function executePve() {
+        if (!contract) { alert("يرجى ربط الهوية أولاً!"); return; }
+        let escapeType = document.getElementById("escapeRoute").value;
+        
+        try {
+            addLog("💥 بدء التخطيط لهجوم الـ PvE الخاطف وسحب رسوم المهمة...");
+            const tx = await contract.executePveAssassination();
+            playSyndicateSound('gunshot');
+            
+            document.getElementById("overlayLabel").innerText = "العملية نشطة: جاري إرسال رصاصة القتل الفوري عبر القطار...";
+            await tx.wait(); 
+            
+            addLog(`✅ تأكيد المعاملة بنجاح على شبكة Base! بدء بروتوكول الإخلاء.`);
+            
+            if(escapeType === 'car') {
+                document.getElementById("screenImg").src = "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80";
+                document.getElementById("overlayLabel").innerText = "مسار الهروب أ: دراجة نارية متسللة";
+                document.getElementById("narratorText").innerHTML = "Item <strong>نجاح التسلل:</strong> انطلق القاتل بدراجته النارية بسرعة خارقة وسط الزحام المظلم!";
+                document.getElementById("wantedBar").style.width = "5%";
+            } else if(escapeType === 'boat') {
+                document.getElementById("screenImg").src = "https://images.unsplash.com/photo-1516655855035-d5215bcb5604?auto=format&fit=crop&w=600&q=80";
+                document.getElementById("overlayLabel").innerText = "مسار الهروب ب: الميناء البحري";
+                document.getElementById("narratorText").innerHTML = "🚤 <strong>الهروب البحري:</strong> شق القارب السريع أمواج البحر المظلمة محرزاً الغنائم.";
+                document.getElementById("shieldBar").style.width = "100%";
+            } else if(escapeType === 'heli') {
+                document.getElementById("screenImg").src = "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80";
+                document.getElementById("overlayLabel").innerText = "مسار الهروب ج: المروحية الجوية";
+                document.getElementById("narratorText").innerHTML = "🚁 <strong>الإخلاء الجوي الأقصى:</strong> أقلعت مروحية التهريب السوداء مخترقة السحاب لتعلن نجاح المهمة.";
+                document.getElementById("healthBar").style.width = "100%";
+            }
+        } catch (error) {
+            addLog("❌ فشل تنفيذ المهمة الميدانية.");
+        }
+    }
+
+    async function buyItem(type) {
+        if (!contract) { alert("يرجى ربط الهوية أولاً!"); return; }
+        let item = type === 1 ? "حقنة الأدرينالين" : "قنبلة الدخان";
+        try {
+            playSyndicateSound('mechanical');
+            addLog(`شراء عتاد: جاري معالجة الحصول على ${item}...`);
+            const tx = await contract.buySurvivalItem(type);
+            await tx.wait();
+            
+            if(type === 1) { document.getElementById("healthBar").style.width = "100%"; } 
+            else { document.getElementById("wantedBar").style.width = "0%"; }
+            
+            addLog(`🛒 تم استلام ${item} وشحنها للحقيبة العسكرية.`);
+        } catch (error) {
+            addLog("❌ فشلت عملية تجهيز العتاد.");
+        }
+    }
+
+    // 👑 دالة المالك السرية لسحب أرصدة اللعبة المجمعة من العقد
+    async function ownerWithdraw() {
+        try {
+            addLog("👑 جاري معالجة أمر سيادي: سحب غنائم السنديكيت المجمعة...");
+            // ملاحظة تكتيكية: دالة السحب يجب أن تسمى بدقة كما سميتها في عقد Solidity (مثل: withdraw المخصصة للمالك)
+            const tx = await signer.sendTransaction({
+                to: await contract.owner(),
+                value: await provider.getBalance(contractAddress)
+            });
+            await tx.wait();
+            addLog("💰 نجاح سيادي: تم تفريغ الخزنة ونقل جميع الغنائم إلى محفظتك بنجاح أسطوري!");
+        } catch(error) {
+            addLog("❌ فشل أمر السحب السيادي: تأكد من الصلاحيات والغاز.");
+        }
+    }
+</script>
+</body>
+</html>
